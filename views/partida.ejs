@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="UTF-8"/> 
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+        <title>Partida Lista</title>
+    </head>
+    <body class="container-fluid">
+
+        <%- include('header') %>
+            <h2>Partidas:</h2>
+            
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Fecha</th>
+                        <th>Hora inicio</th>
+                        <th>Duracion</th>
+                        <th>Equipo A</th>
+                        <th>Factor A</th>
+                        <th>Equipo B</th>
+                        <th>Factor B</th>
+                        <th>Factor Empate</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <% partidas.forEach( (partida) => { %>
+                            <td><%= partida.id %></td>
+                            <td><%= partida.fecha.toISOString().substring(0,10) %></td>
+                            <td><%= partida.hora %></td>
+                            <td><%= partida.duracion %></td>
+                            <td><%= partida.equipoA %></td>
+                            <td><%= partida.factorA %></td>
+                            <td><%= partida.equipoB %></td>
+                            <td><%= partida.factorB %></td>
+                            <td><%= partida.factorE %></td>
+                            <td><%= partida.estado %></td>
+                        <td>
+                            <a href="/partida/eliminarpartida/<%= partida.id %>">Eliminar</a>
+                            <a href="/partida/modificarpartida/<%= partida.id %>">Modificar</a>
+                        </td>
+                    </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+            <a href="/partida/new"><button class="btn btn-success">Nuevo</button></a>
+
+        <%- include('footer') %>
+    </body>
+</html>
